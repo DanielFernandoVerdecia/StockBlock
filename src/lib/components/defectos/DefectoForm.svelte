@@ -31,7 +31,7 @@
     <select bind:value={loteId}>
         <option value={null}>-- Seleccione un lote --</option>
         {#each $lotesStore as lote}
-            <option value={lote.id}>{lote.nombre} (#{lote.id})</option>
+            <option value={lote.id}>{lote.producto} (#{lote.id})</option>
         {/each}
     </select>
 

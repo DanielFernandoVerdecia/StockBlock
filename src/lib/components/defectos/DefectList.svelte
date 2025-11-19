@@ -23,7 +23,7 @@
 
     {#each $lotesStore as lote}
         <div class="lote">
-            <strong>{lote.nombre}</strong> — {lote.estado}
+            <strong>{lote.producto}</strong> — {lote.estado}
             <br>
             Defectos: {contar(lote.id)}
 

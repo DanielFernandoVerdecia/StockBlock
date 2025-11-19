@@ -1,18 +1,16 @@
 <script lang="ts">
-    import DefectoForm from '$lib/components/defectos/DefectoForm.svelte';
-    import DefectList from '$lib/components/defectos/DefectList.svelte';
-
-    let threshold = 5;
+  import InspectionForm from '$lib/components/defectos/InspectionForm.svelte';
+  import InspectionList from '$lib/components/defectos/InspectionList.svelte';
 </script>
 
-<h1>Registrar y Revisar Defectos</h1>
+<h1>Defectos / Inspecciones</h1>
 
 <div style="display:flex; gap:2rem; align-items:flex-start;">
-    <div style="flex:1;">
-        <DefectoForm />
-    </div>
+  <div style="flex:1;">
+    <InspectionForm />
+  </div>
 
-    <div style="flex:1;">
-        <DefectList {threshold} />
-    </div>
+  <div style="flex:1;">
+    <InspectionList />
+  </div>
 </div>
