@@ -69,6 +69,8 @@
                 <button onclick = {()=> enrutador('/entregas')} class="cta-primary">Entregas</button>
                 <button onclick = {()=> enrutador('defectos')} class="btn btn-danger btn-lg">Defectos</button>
                 <button onclick = {()=> enrutador('mantenimiento')} class="cta-secondary">Mantenimientos</button>
+                <button onclick = {()=> enrutador('stock')} class="cta-secondary">Productos</button>
+                <button onclick = {()=> enrutador('produccion')} class="cta-secondary">Produccion</button>
             </div>
             
             <div class="stats-section">
