@@ -4,6 +4,8 @@
     import { Lote } from '$lib/models/lote';
     import { get } from 'svelte/store';
 
+    import {enrutador} from '../../../routes/router_now'
+
     let producto = '';
     let cantidad: number = 0;
 
@@ -59,7 +61,9 @@
     <label>Cantidad producida</label>
     <input type="number" bind:value={cantidad} min="1" />
 
-    <button on:click={agregarLote}>Guardar lote</button>
+    <button onclick={agregarLote} class="btn btn-primary">Guardar lote</button>
+    <button onclick={()=> enrutador('/defectos')} class="btn btn-secondary">Volver al formulario Defectos</button>
+
 </div>
 
 <style>
@@ -68,12 +72,12 @@
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
 }
-button {
-    padding: .5rem;
-    background: #1e90ff;
-    color: white;
-    border-radius: 6px;
-    border: none;
-}
+
 </style>
