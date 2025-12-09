@@ -71,6 +71,7 @@
                 <button onclick = {()=> enrutador('mantenimiento')} class="cta-primary">Mantenimientos</button>
                 <button onclick = {()=> enrutador('stock')} class="cta-primary">Productos</button>
                 <button onclick = {()=> enrutador('produccion')} class="cta-primary">Produccion</button>
+                <button onclick = {()=> enrutador('ausentismo')} class="cta-primary">Ausentismo</button>
             </div>
             
         
