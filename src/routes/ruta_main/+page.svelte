@@ -71,6 +71,7 @@
                 <button on:click={() => enrutador('stock')} class="cta-primary">Productos</button>
                 <button on:click={() => enrutador('produccion')} class="cta-primary">Produccion</button>
                 <button on:click={() => enrutador('ausentismo')} class="cta-primary">Ausentismo</button>
+                <button on:click={() => enrutador('diagramas')} class="cta-primary">📊 Diagramas</button>
                 <button on:click={() => enrutador('reportes')} class="cta-primary">Reportes</button>
             </div>
             
