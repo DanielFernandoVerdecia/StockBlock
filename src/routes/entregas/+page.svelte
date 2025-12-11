@@ -22,7 +22,7 @@
 
   // Filter
   let q = '';
-  function onFilter(e: CustomEvent) { q = e.detail.value} // [cite: 6]
+  function onFilter(e: CustomEvent) { q = e.detail.value} //
 
   function validate() {
     errors = [];
@@ -143,13 +143,12 @@
 
 <h1 style="text-align: center; margin-top: 2rem;">Comprobante de entrega</h1>
 
-
-
 <section>
   <form on:submit|preventDefault={editingId ? saveEdit : add}>
     {#if errors.length}
       <ul class="err">{#each errors as e}<li>{e}</li>{/each}</ul>
     {/if}
+    
     <input placeholder="Cliente" bind:value={cliente} />
     <input placeholder="Documento (opcional)" bind:value={documento} />
 
@@ -161,61 +160,63 @@
             <img src={currentFirma} alt="Vista previa firma" 
             style="max-height: 20rem; border: 5px solid #ccc;"
              />
-
-            <button type="button" style="font-size: 1.5rem;" class="btn btn-primary" on:click={() => currentFirma = ''}>
+             
+             <button type="button" style="font-size: 1.5rem; display: block; margin: 10px auto;" class="btn btn-primary" on:click={() => currentFirma = ''}>
               Borrar Firma
             </button>
-
         </div>
     {/if}
 
-     <button
-      type="button"
-      style="font-size: 1.5rem;"
-      class="btn btn-primary"
-      on:click={openSignature}
-      >
-        {currentFirma ? 'Cambiar Firma ' : 'Firmar '}
-      </button>
-
-    <input 
-        type="file" 
-        accept="image/*" 
-        style="display: none;" 
-        bind:this={fileInput} 
-        on:change={handleFileUpload}
-    />
-
-    <button 
-        type="button" 
-        style="font-size: 1.5rem;" 
+    <div class="action-buttons-row">
+        
+        <button
+        type="button"
+        style="font-size: 1.5rem;"
         class="btn btn-primary"
-        on:click={() => fileInput.click()} 
-    >
-      Subir Foto
-    </button>
-     
-    <button type="submit" class="btn btn-primary" style="font-size: 1.5rem;">
-      {editingId ? 'Guardar' : 'Registrar'}
-    </button>
+        on:click={openSignature}
+        >
+          {currentFirma ? 'Cambiar Firma ' : 'Firmar '}
+        </button>
 
-    <BootstrapModal bind:open={showSignatureModal} title="Firmar comprobante" size="modal-lg" on:cancel={() => showSignatureModal = false}>
+        <input 
+          type="file" 
+          accept="image/*" 
+          style="display: none;" 
+          bind:this={fileInput} 
+          on:change={handleFileUpload}
+        />
+
+        <button 
+          type="button" 
+          style="font-size: 1.5rem;" 
+          class="btn btn-primary"
+          on:click={() => fileInput.click()} 
+        >
+          Subir Foto
+        </button>
+        
+        <button type="submit" class="btn btn-primary" style="font-size: 1.5rem;">
+          {editingId ? 'Guardar' : 'Registrar'}
+        </button>
+
+        {#if editingId}
+          <button type="button" on:click={() => { editingId = null; cliente = ''; documento = ''; currentFirma = ''; }}
+          class="btn btn-danger"  
+          >
+            Cancelar
+          </button>
+        {/if}
+
+    </div>
+    </form>
+    
+  <BootstrapModal bind:open={showSignatureModal} title="Firmar comprobante" size="modal-lg" on:cancel={() => showSignatureModal = false}>
       <Signature on:saved={onSignatureSaved} />
       <div slot="footer">
         <button type="button" class="btn btn-secondary" on:click={() => (showSignatureModal = false)}>Cerrar</button>
       </div>
-    </BootstrapModal>
+  </BootstrapModal>
 
-    {#if editingId}
-
-      <button type="button" on:click={() => { editingId = null; cliente = ''; documento = ''; currentFirma = ''; }}
-      class="btn btn-danger"  
-      >
-        Cancelar
-      </button>
-
-    {/if}
-  </form>
 
   <SearchFilter placeholder="Buscar por cliente" on:change={onFilter} />
 
@@ -270,10 +271,10 @@
 
 
   <div style = "display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;">
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;">
 
   <button type="button" class="btn btn-secondary btn-lg"
   on:click = {()=> enrutador('/ruta_main')}
@@ -288,8 +289,26 @@
 <style>
   .err { color: red; margin: 8px 0; }
   table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-  th, td { border: 1px solid #ddd; padding: 6px; text-align: left; vertical-align: middle; } /* Agregué vertical-align */
-  button { margin-right: 6px; }
+  th, td { border: 1px solid #ddd; padding: 6px; text-align: left; vertical-align: middle; }
+  
+  /* El form sigue siendo columna para los inputs */
   form{ display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 2rem; }
-  section{ min-height: 100vh; display: flex; justify-content: start; align-items: center; flex-direction: column; gap: 2rem; padding-bottom: 50px; } /* Ajusté section para que no corte contenido si es muy largo */
+  
+  section{ min-height: 100vh; display: flex; justify-content: start; align-items: center; flex-direction: column; gap: 2rem; padding-bottom: 50px; }
+
+  /* --- NUEVA CLASE para la fila de botones --- */
+  .action-buttons-row {
+    display: flex;
+    flex-direction: row; /* Fila horizontal */
+    gap: 1rem;          /* Espacio entre botones */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;    /* Permite que bajen si la pantalla es muy pequeña */
+    width: 100%;
+  }
+
+  /* Pequeño ajuste para que los botones dentro de la fila no tengan el margen derecho que afectaba a todos los botones */
+  .action-buttons-row button {
+    margin-right: 0;
+  }
 </style>

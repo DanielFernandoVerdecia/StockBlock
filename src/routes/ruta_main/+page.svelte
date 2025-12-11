@@ -73,6 +73,7 @@
                 <button on:click={() => enrutador('ausentismo')} class="cta-primary">Ausentismo</button>
                 <button on:click={() => enrutador('diagramas')} class="cta-primary">📊 Diagramas</button>
                 <button on:click={() => enrutador('reportes')} class="cta-primary">Reportes</button>
+                <button on:click={() => enrutador('pedidos')} class="cta-primary">Gestionar pedidos</button>
             </div>
             
         
